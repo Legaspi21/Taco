@@ -13,7 +13,7 @@ import SignupForm from './SignupForm';
 
 class Registration extends Component {
   // Component level state used to toggle the correct form to display
-  state = { registeredUser: false };
+  state = { registeredUser: true };
 
   // Logic to determine which form to render to the user
   renderForm() {
@@ -33,7 +33,7 @@ class Registration extends Component {
       <View style={styles.containerStyle}>
         <Logo />
         {/* Conditionally render sign up or login form */}
-        {this.renderForm}
+        {this.renderForm()}
         {/* Button to toggle registeredUser state and log in an existing user */}
       </View>
       );

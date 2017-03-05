@@ -10,9 +10,9 @@ import Registration from './components/landing/Registration';
 class App extends Component {
   render() {
     return (
-      <View style={styles.containerStyle}>
-        <Registration />
-      </View>
+        <View style={styles.containerStyle}>
+          <Registration />
+        </View>
     );
   }
 }

@@ -1,12 +1,12 @@
 'use strict';
 
 import React, { Component } from 'react';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
 import firebase from 'firebase';
-import {
-  StyleSheet,
-  View
-} from 'react-native';
-import Registration from './components/landing/Registration';
+import ReduxThunk from 'redux-thunk';
+import reducers from './reducers';
+import Router from './Router';
 
 class App extends Component {
   componentWillMount() {
@@ -21,21 +21,14 @@ class App extends Component {
   firebase.initializeApp(config);
   }
   render() {
+    const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
+
     return (
-        <View style={styles.containerStyle}>
-          <Registration />
-        </View>
+      <Provider store={store}>
+          <Router />
+      </Provider>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  containerStyle: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'flex-start'
-  }
-});
-
 
 export default App;

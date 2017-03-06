@@ -15,11 +15,14 @@ class Registration extends Component {
   // Component level state used to toggle the correct form to display
   state = { registeredUser: true };
 
+  handleRegisteredUser() {
+    this.setState({ registeredUser: false });
+  }
   // Logic to determine which form to render to the user
   renderForm() {
     if (this.state.registeredUser) {
       return (
-        <LoginForm />
+        <LoginForm handleRegisteredUser={this.handleRegisteredUser.bind(this)} />
        );
     }
 
@@ -42,7 +45,10 @@ class Registration extends Component {
 
 const styles = StyleSheet.create({
   containerStyle: {
-    flex: 1
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    marginTop: -40
   }
 });
 

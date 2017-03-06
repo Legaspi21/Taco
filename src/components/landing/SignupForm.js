@@ -6,13 +6,38 @@ import {
   View,
   Text
 } from 'react-native';
-
 import { MKTextField, MKColor } from 'react-native-material-kit';
+import { connect } from 'react-redux';
+import { 
+	emailChanged, 
+	passwordChanged, 
+	firstNameChanged, 
+	lastNameChanged,
+	createAccount 
+} from '../../actions';
 import Button from '../common/Button';
 
-class LoginForm extends Component {
+class SignupForm extends Component {
 	onButtonPress() {
-		console.log('pressed the button')
+		const { first_name, last_name, email, password } = this.props;
+
+		this.props.createAccount({ first_name, last_name, email, password });
+	}
+
+	onEmailChange(text) {
+		this.props.emailChanged(text);
+	}
+
+	onPasswordChange(text) {
+		this.props.passwordChanged(text);
+	}
+
+	onFirstNameChange(text) {
+		this.props.firstNameChanged(text);
+	}
+
+	onLastNameChange(text) {
+		this.props.lastNameChanged(text);
 	}
 
   render() {
@@ -24,24 +49,32 @@ class LoginForm extends Component {
 					textInputStyle={{ color: MKColor.Orange, flex: 1 }}
 					placeholder='first name'
 					style={styles.textfield}
+					onChangeText={this.onFirstNameChange.bind(this)}
+					value={this.props.first_name}
 				/>
 				<MKTextField 
 					tintColor={MKColor.Lime}
 					textInputStyle={{ color: MKColor.Orange, flex: 1 }}
 					placeholder='last name'
 					style={styles.textfield}
+					onChangeText={this.onLastNameChange.bind(this)}
+					value={this.props.last_name}
 				/>
 				<MKTextField 
 					tintColor={MKColor.Lime}
 					textInputStyle={{ color: MKColor.Orange, flex: 1 }}
 					placeholder='email'
 					style={styles.textfield}
+					onChangeText={this.onEmailChange.bind(this)}
+					value={this.props.email}
 				/>
 				<MKTextField 
 					tintColor={MKColor.Lime}
 					textInputStyle={{ color: MKColor.Orange, flex: 1 }}
 					placeholder='password'
 					style={styles.textfield}
+					onChangeText={this.onPasswordChange.bind(this)}
+					value={this.props.password}
 					password
 				/>
 				<View style={styles.buttonStyle} >
@@ -62,7 +95,7 @@ const styles = StyleSheet.create({
 	},
 	containerStyle: {
 		alignItems: 'center',
-		justifyContent: 'center',
+		justifyContent: 'center'
 	},
 	headerText: {
 		fontSize: 30,
@@ -75,4 +108,16 @@ const styles = StyleSheet.create({
 	}
 });
 
-export default LoginForm;
+const mapStateToProps = ({ auth }) => {
+	const { first_name, last_name, email, password, error, loading } = auth;
+
+	return { first_name, last_name, email, password, error, loading };
+}; 
+
+export default connect(mapStateToProps, { 
+	emailChanged, 
+	passwordChanged, 
+	firstNameChanged, 
+	lastNameChanged, 
+	createAccount 
+})(SignupForm);

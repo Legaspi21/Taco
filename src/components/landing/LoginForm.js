@@ -6,16 +6,57 @@ import {
   View,
   Text
 } from 'react-native';
-import { MKTextField, MKColor } from 'react-native-material-kit';
+import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit';
+import { connect } from 'react-redux';
+import { emailChanged, passwordChanged, loginUser } from '../../actions';
 import Button from '../common/Button';
 
 class LoginForm extends Component {
+
+	onEmailChange(text) {
+		this.props.emailChanged(text);
+	}
+
+	onPasswordChange(text) {
+		this.props.passwordChanged(text);
+	}
+
 	onLoginButtonPress() {
-		console.log('pressed the button');
+		const { email, password } = this.props;
+
+		this.props.loginUser({ email, password });
 	}
 
 	onSignupButtonPress() {
-		console.log('pressed the button');
+		this.props.handleRegisteredUser();
+	}
+
+	renderButton() {
+		if (this.props.loading) {
+			return <MKSpinner style={styles.spinnerStyle} />;
+		}
+
+		return (
+			<Button onPress={this.onLoginButtonPress.bind(this)}>
+				login
+			</Button>
+		);
+	}
+
+	renderError() {
+		if (this.props.error) {
+			return (
+				<Text style={styles.errorTextStyle}>
+					{this.props.error}
+				</Text>
+			);
+		}
+
+		return (
+			<Text style={styles.signUpText}>
+				Don't have an account yet?
+			</Text>
+		);
 	}
 
   render() {
@@ -27,20 +68,22 @@ class LoginForm extends Component {
 					textInputStyle={{ color: MKColor.Orange, flex: 1 }}
 					placeholder='email'
 					style={styles.textfield}
+					onTextChange={this.onEmailChange.bind(this)}
+					value={this.props.email}
 				/>
 				<MKTextField 
 					tintColor={MKColor.Lime}
 					textInputStyle={{ color: MKColor.Orange, flex: 1 }}
 					placeholder='password'
 					style={styles.textfield}
+					onChangeText={this.onPasswordChange.bind(this)}
+					value={this.props.password}
 					password
 				/>
 				<View style={styles.buttonStyle} >
-					<Button onPress={this.onLoginButtonPress.bind(this)}>
-						login
-					</Button>
+					{this.renderButton()}
 				</View>
-				<Text style={styles.signUpText} >Don't have an account yet?</Text>
+				{this.renderError()}
 				<View style={styles.buttonStyle} >
 					<Button onPress={this.onSignupButtonPress.bind(this)}>
 						sign up
@@ -59,7 +102,7 @@ const styles = StyleSheet.create({
 	},
 	containerStyle: {
 		alignItems: 'center',
-		justifyContent: 'center',
+		justifyContent: 'center'
 	},
 	headerText: {
 		fontSize: 30,
@@ -74,8 +117,22 @@ const styles = StyleSheet.create({
 		marginTop: 10,
 		color: '#a51b00',
 		fontWeight: '300'
+	},
+	spinnerStyle: {
+		width: 22,
+    height: 22
+	},
+	errorTextStyle: {
+		marginTop: 10,
+		color: '#a51b00',
+		fontWeight: '300'
 	}
 });
 
+const mapStateToProps = ({ auth }) => {
+	const { email, password, error, loading } = auth;
 
-export default LoginForm;
+	return { email, password, error, loading };
+};
+
+export default connect(mapStateToProps, { emailChanged, passwordChanged, loginUser })(LoginForm);

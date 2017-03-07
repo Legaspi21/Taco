@@ -4,17 +4,16 @@ import React, { Component } from 'react';
 
 import {
   StyleSheet,
-  View,
-  Text
+  View
 } from 'react-native';
+
+import MenuList from './MenuList';
 
 class Menu extends Component {
   render() {
     return (
       <View>
-				<Text style={styles.textStyle}>
-					MENU
-				</Text>
+				<MenuList />
       </View>
     );
   }

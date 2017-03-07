@@ -8,8 +8,10 @@ const RouterComponent = () => {
 	const AppLogo = () => {
   return (
     <View style={{ alignItems: 'center', marginTop: 5, width: 1, height: 1 }}>
-      <Image source={require('./img/taco-logo.png')}
-             style={{ width: 84, height: 29 }} />
+      <Image 
+      source={require('./img/taco-logo.png')}
+      style={{ width: 84, height: 29 }} 
+      />
     </View>
   );
 };
@@ -22,7 +24,7 @@ const RouterComponent = () => {
 				hideNavBar
 				/>
 			</Scene>
-			<Scene key="main">
+			<Scene key="main" initial>
 				<Scene 
 				key="home"
 				component={Menu}

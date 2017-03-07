@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 
 import {
   StyleSheet,
-  View,
+  View
 } from 'react-native';
 import Logo from '../Logo';
 import LoginForm from './LoginForm';
@@ -15,6 +15,7 @@ class Registration extends Component {
   // Component level state used to toggle the correct form to display
   state = { registeredUser: true };
 
+  // Helper passed to LoginForm to switch state of registeredUser when the sign up button is pressed
   handleRegisteredUser() {
     this.setState({ registeredUser: false });
   }

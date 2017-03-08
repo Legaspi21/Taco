@@ -12,7 +12,7 @@ const MenuItem = ({ title, description, imageSource }) => {
 		cardImageStyle, 
 		cardTitleStyle, 
 		cardContentStyle, 
-		cardMenuStyle, 
+		// cardMenuStyle, 
 		//cardActionStyle 
 	} = styles;
 
@@ -23,14 +23,15 @@ const MenuItem = ({ title, description, imageSource }) => {
 			<Text style={cardContentStyle}>
 				{description}
 			</Text>
-			<View style={cardMenuStyle} />
-			{/*<Text style={cardActionStyle}>My Action</Text>*/}
+			{/*<View style={cardMenuStyle} />
+			<Text style={cardActionStyle}>My Action</Text>*/}
 		</View>
 	);
 };
 
 const styles = StyleSheet.create({
 	cardStyle: {
+		flex: 1,
     backgroundColor: '#ffffff',
     borderRadius: 2,
     borderColor: '#ffffff',
@@ -71,6 +72,7 @@ const styles = StyleSheet.create({
     padding: 15,
   },
   cardMenuStyle: {
+		flexGrow: 1,
     position: 'absolute',
     top: 16,
     right: 16,

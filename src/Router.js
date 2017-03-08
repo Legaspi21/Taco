@@ -16,7 +16,7 @@ const RouterComponent = () => {
   );
 };
 	return (
-		<Router sceneStyle={{ paddingTop: 65 }} >
+		<Router sceneStyle={{ paddingTop: 65, flexGrow: 1 }} >
 			<Scene key="auth">
 				<Scene 
 				key="registration" 

@@ -31,7 +31,7 @@ class MenuList extends Component {
 					key={taco.title} 
 					title={taco.title} 
 					description={taco.description} 
-					imageSource={taco.uri} 
+					imageSource={taco.uri}
 					/>
 				)
 			);
@@ -47,7 +47,7 @@ class MenuList extends Component {
   render() {
 		console.log(this.state.tacos);
     return (
-			<ScrollView>
+			<ScrollView style={{ flexGrow: 1 }}>
 				{this.renderMenuItem()}
 			</ScrollView>
     );
@@ -56,13 +56,14 @@ class MenuList extends Component {
 
 const styles = StyleSheet.create({
 	spinnerStyle: {
+		flexGrow: 1,
 		alignItems: 'center',
 		justifyContent: 'center',
 		width: 144,
     height: 144
 	},
 	spinnerViewStyle: {
-		flex: 1,
+		flexGrow: 1,
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',

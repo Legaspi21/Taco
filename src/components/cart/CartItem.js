@@ -19,12 +19,18 @@ class CartItem extends Component {
         <Body>
           <Text note >{this.props.quantity}</Text>
         </Body>
-        <Right>
+        <Right style={styles.rightStyle}>
           <Text note >{this.itemTotal()}</Text>
         </Right>
       </ListItem>
     );
   }
 }
+
+const styles = {
+	rightStyle: {
+		marginLeft: -50
+	}
+};
 
 export default CartItem;

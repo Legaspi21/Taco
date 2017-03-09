@@ -70,7 +70,6 @@ class Cart extends Component {
   }
 
   renderGrandTotal() {
-    const grandTotal = this.calculateTotal();
     if (this.props.orders) {
       return (
         <View>
@@ -84,7 +83,7 @@ class Cart extends Component {
             <Body>
               <Text note>* CA Tax 9.25%</Text>
             </Body>
-            <Right>
+            <Right style={styles.rightStyle}>
               <Text note >{`$${this.calculateTax()}`}</Text>
             </Right>
           </ListItem>
@@ -96,6 +95,9 @@ class Cart extends Component {
               <Text note >{`$${this.calculateTotalWithTax()}`}</Text>
             </Right>
           </ListItem>
+          <Button block success>
+            <Text>Checkout</Text>
+          </Button>
         </View>
         );
     }
@@ -143,9 +145,11 @@ class Cart extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-
-});
+const styles = {
+  rightStyle: {
+    marginLeft: -50
+  }
+};
 
 const mapStateToProps = ({ cart }) => {
   return cart;

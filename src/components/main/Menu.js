@@ -7,10 +7,22 @@ import {
   View
 } from 'react-native';
 import { Container, Content, Footer, FooterTab, Button, Icon, Text } from 'native-base';
+import { Actions } from 'react-native-router-flux'; 
 
 import MenuList from './MenuList';
 
 class Menu extends Component {
+  onCartPress() {
+    Actions.cart();
+  }
+
+  onSendPress() {
+    console.log('SEND');
+  }
+
+  onAccountPress() {
+    console.log('ACCOUNT');
+  }
   render() {
     return (
       <Container>
@@ -20,15 +32,15 @@ class Menu extends Component {
       {/*Temporarily rendering Footer here due to breaking change with Flex: https://github.com/facebook/react-native/wiki/Breaking-Changes#fix-unconstraint-sizing-in-main-axis-0a9b6b---emilsjolander*/}
         <Footer >
           <FooterTab>
-            <Button>
+            <Button onPress={() => this.onCartPress()}>
               <Icon name="cart" />
               <Text>Cart</Text>
             </Button>
-            <Button active>
+            <Button active onPress={() => this.onSendPress()}>
               <Icon active name="paper-plane" />
               <Text>Send</Text>
             </Button>
-            <Button>
+            <Button onPress={() => this.onAccountPress()}>
               <Icon name="person" />
               <Text>Account</Text>
             </Button>

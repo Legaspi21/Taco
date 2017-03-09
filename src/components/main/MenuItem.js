@@ -1,33 +1,101 @@
-import React from 'react';
+import React, { Component } from 'react';
+
+import { connect } from 'react-redux';
+import { Button, Icon, Input, Item } from 'native-base';
 import { 
 	View,
 	Image,
 	Text,
-	StyleSheet
+	StyleSheet,
+	LayoutAnimation,
+	TouchableWithoutFeedback
 } from 'react-native';
+import { 
+	quantityChanged
+} from '../../actions';
 
-const MenuItem = ({ title, description, imageSource }) => {
+class MenuItem extends Component {
+	state = { expanded: false, cartClicked: false }
+	componentWillUpdate() {
+		LayoutAnimation.spring();
+	}
+
+	onQuantityTextChange({ quantity, title, price }) {
+		this.props.quantityChanged({ quantity, title, price });
+	}
+
+	handleImageCartPress() {
+		this.setState({ cartClicked: !this.state.cartClicked });
+		this.selectExpanded();
+	}
+	
+	selectExpanded() {
+		this.setState({ expanded: !this.state.expanded });
+	}
+
+	renderQuantityField() {
+		const { title, price, id } = this.props;
+
+		if (this.state.cartClicked) {
+			return (
+				<Item>
+					<Icon active name='cart' />
+					<Input 
+						placeholder='How many?' 
+						onChangeText={(quantity) => this.onQuantityTextChange({ quantity, title, price })} 
+					/>
+				</Item>
+			);
+		}
+	}
+
+	renderDescription() {
+		const { cardContentStyle } = styles;
+		const { description } = this.props;
+
+		if (this.state.expanded) {
+			return (
+				<Text style={cardContentStyle}>
+					{description}
+				</Text>
+			);
+		}
+	}
+
+	render() {
 	const { 
 		cardStyle, 
 		cardImageStyle, 
 		cardTitleStyle, 
-		cardContentStyle, 
-		// cardMenuStyle, 
+		// cardContentStyle, 
+		cardMenuStyle, 
 		//cardActionStyle 
 	} = styles;
 
+	const { title, imageSource } = this.props;
+
 	return (
-		<View style={cardStyle}>
-			<Image source={{ uri: imageSource }} style={cardImageStyle} />	
-			<Text style={cardTitleStyle}>{title}</Text>
-			<Text style={cardContentStyle}>
-				{description}
-			</Text>
-			{/*<View style={cardMenuStyle} />
-			<Text style={cardActionStyle}>My Action</Text>*/}
-		</View>
+		<TouchableWithoutFeedback onPress={() => this.selectExpanded()}>
+			
+			<View style={cardStyle}>
+				<Image source={{ uri: imageSource }} style={cardImageStyle} />	
+				<Text style={cardTitleStyle}>{title}</Text>
+				{this.renderQuantityField()}
+				{this.renderDescription()}
+				{/*<Text style={cardContentStyle}>
+					{description}
+				</Text>*/}
+				<View style={cardMenuStyle}>
+					<Button small light onPress={() => this.handleImageCartPress()}>
+						<Icon style={{ fontSize: 18 }} name="cart" />
+					</Button>
+				</View>
+				{/*<Text style={cardActionStyle}>My Action</Text>*/}
+			</View>
+		</TouchableWithoutFeedback>
 	);
-};
+}
+}
 
 const styles = StyleSheet.create({
 	cardStyle: {
@@ -78,6 +146,9 @@ const styles = StyleSheet.create({
     right: 16,
     backgroundColor: 'transparent',
   },
+
 });
 
-export default MenuItem;
+export default connect(null, { 
+	quantityChanged
+})(MenuItem);

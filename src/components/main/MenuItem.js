@@ -25,7 +25,7 @@ class MenuItem extends Component {
 	}
 
 	handleImageCartPress() {
-		this.setState({ cartClicked: !this.state.cartClicked });
+		this.setState({ cartClicked: true });
 		this.selectExpanded();
 	}
 	
@@ -38,7 +38,7 @@ class MenuItem extends Component {
 	}
 
 	renderQuantityField() {
-		const { title, price, id } = this.props;
+		const { title, price } = this.props;
 
 		if (this.state.cartClicked) {
 			return (

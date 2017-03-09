@@ -1,11 +1,11 @@
 'use strict';
 
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux';
 import {
   StyleSheet,
   ScrollView,
-  View
+  View,
 } from 'react-native';
 import { MKSpinner } from 'react-native-material-kit';
 import axios from 'axios';
@@ -32,6 +32,7 @@ class MenuList extends Component {
 					title={taco.title} 
 					description={taco.description} 
 					imageSource={taco.uri}
+					price={taco.price}
 					/>
 				)
 			);
@@ -45,7 +46,6 @@ class MenuList extends Component {
 	}
 
   render() {
-		console.log(this.state.tacos);
     return (
 			<ScrollView style={{ flexGrow: 1 }}>
 				{this.renderMenuItem()}
@@ -71,5 +71,12 @@ const styles = StyleSheet.create({
 	}
 });
 
+const mapStateToProps = ({ cart }) => {
+	console.log(cart);
+	console.log('cart');
+	const { quantity } = cart;
 
-export default MenuList;
+	return { quantity };
+}; 
+
+export default connect(mapStateToProps)(MenuList);

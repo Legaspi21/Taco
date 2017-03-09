@@ -3,6 +3,7 @@ import { Image, View } from 'react-native';
 import { Scene, Router } from 'react-native-router-flux';
 import Registration from './components/landing/Registration';
 import Menu from './components/main/Menu';
+import Cart from './components/cart/Cart';
 
 const RouterComponent = () => {
 	const AppLogo = () => {
@@ -29,6 +30,11 @@ const RouterComponent = () => {
 				key="home"
 				component={Menu}
 				title={() => { return <AppLogo />; }}
+				/>
+				<Scene 
+				key="cart"
+				component={Cart}
+				title="Cart"
 				/>
 			</Scene>
 		</Router>

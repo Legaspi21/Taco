@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
-import { Button, Icon, Input, Item } from 'native-base';
+import { Button, Icon, Input, Item, Text as TextBase } from 'native-base';
 import { 
 	View,
 	Image,
@@ -33,6 +33,10 @@ class MenuItem extends Component {
 		this.setState({ expanded: !this.state.expanded });
 	}
 
+	formatPrice(price) {
+		return price / 100;
+	}
+
 	renderQuantityField() {
 		const { title, price, id } = this.props;
 
@@ -51,13 +55,16 @@ class MenuItem extends Component {
 
 	renderDescription() {
 		const { cardContentStyle } = styles;
-		const { description } = this.props;
+		const { description, price } = this.props;
 
 		if (this.state.expanded) {
 			return (
-				<Text style={cardContentStyle}>
-					{description}
-				</Text>
+				<View>
+					<TextBase note>{`$${this.formatPrice(price)}`}</TextBase>
+					<Text style={cardContentStyle}>
+						{description}
+					</Text>
+				</View>
 			);
 		}
 	}

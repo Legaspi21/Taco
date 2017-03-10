@@ -37,12 +37,12 @@ class Menu extends Component {
               <Text>Cart</Text>
             </Button>
             <Button active onPress={() => this.onSendPress()}>
-              <Icon active name="paper-plane" />
-              <Text>Send</Text>
+              <Icon active name="restaurant" />
+              <Text>Menu</Text>
             </Button>
             <Button onPress={() => this.onAccountPress()}>
-              <Icon name="person" />
-              <Text>Account</Text>
+              <Icon name="people" />
+              <Text>Amigos</Text>
             </Button>
           </FooterTab>
         </Footer>

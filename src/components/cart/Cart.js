@@ -14,7 +14,9 @@ import {
   Right, 
   Left, 
   Body, 
-  Separator 
+  Separator,
+  Badge,
+  H1
 } from 'native-base';
 
 import {
@@ -24,6 +26,7 @@ import {
 import CartItem from './CartItem';
 
 class Cart extends Component {
+  state = { checkoutPressed: false }
 	onCartPress() {
     Actions.cart();
   }
@@ -36,10 +39,37 @@ class Cart extends Component {
     console.log('ACCOUNT');
   }
 
+  onCheckoutPress() {
+    
+  }
+
+  calculateTax() {
+    const total = this.calculateTotal();
+    const totalWithTax = total * 0.0925;
+
+    return totalWithTax.toFixed(2);
+  }
+
+  calculateTotalWithTax() {
+    const total = this.calculateTotal();
+    const tax = this.calculateTax();
+
+    return (parseFloat(total) + parseFloat(tax)).toFixed(2);
+  }
+
+  calculateTotal() {
+    let total = 0;
+    this.props.orders.forEach(order =>
+      total += (parseInt(order.quantity, 10) * order.price) / 100
+    );
+    return total;
+  }
+
+  renderOrderStatus() {
+    
+  }
+
   renderCartItem() {
-    console.log("-----------------");
-    console.log(this.props);
-    console.log("-----------------");
     //this.props.orders <--- is array
     // in array -->> price, quantity, title
     if (this.props.orders) {
@@ -58,27 +88,6 @@ class Cart extends Component {
     return (
       <Text>No Orders</Text>
     );
-  }
-  calculateTotal() {
-    let total = 0;
-    this.props.orders.forEach(order =>
-      total += (parseInt(order.quantity, 10) * order.price) / 100
-    );
-    return total;
-  }
-
-  calculateTax() {
-    const total = this.calculateTotal();
-    const totalWithTax = total * 0.0925;
-
-    return totalWithTax.toFixed(2);
-  }
-
-  calculateTotalWithTax() {
-    const total = this.calculateTotal();
-    const tax = this.calculateTax();
-
-    return (parseFloat(total) + parseFloat(tax)).toFixed(2);
   }
 
   renderGrandTotal() {
@@ -107,13 +116,13 @@ class Cart extends Component {
               <Text note >{`$${this.calculateTotalWithTax()}`}</Text>
             </Right>
           </ListItem>
-          <Button block success>
+          <Button block success onPress={this.onCheckoutPress()}>
             <Text>Checkout</Text>
           </Button>
         </View>
         );
     }
-    // If request has not completed render a spinner
+    // If request has not completed
     return (
       <Text>No Orders</Text>
     );
@@ -138,17 +147,17 @@ class Cart extends Component {
         </Content>
         <Footer >
           <FooterTab>
-            <Button onPress={() => this.onCartPress()}>
-              <Icon name="cart" />
+            <Button active onPress={() => this.onCartPress()}>
+              <Icon active name="cart" />
               <Text>Cart</Text>
             </Button>
-            <Button active onPress={() => this.onSendPress()}>
-              <Icon active name="paper-plane" />
-              <Text>Send</Text>
+            <Button onPress={() => this.onSendPress()}>
+              <Icon name="restaurant" />
+              <Text>Menu</Text>
             </Button>
             <Button onPress={() => this.onAccountPress()}>
-              <Icon name="person" />
-              <Text>Account</Text>
+              <Icon name="people" />
+              <Text>Amigos</Text>
             </Button>
           </FooterTab>
         </Footer>

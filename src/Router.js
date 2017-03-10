@@ -35,6 +35,7 @@ const RouterComponent = () => {
 				key="cart"
 				component={Cart}
 				title="Cart"
+				initial
 				/>
 			</Scene>
 		</Router>

@@ -6,3 +6,5 @@
 + Designed UI/UX for all mobile views using custom and open source components .
 + Wireframe of application using Balsamiq.
 + Decoupled architecture consumes custom API.
+
+![Taco](Taco-App-Screencast.gif)

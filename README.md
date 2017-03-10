@@ -7,4 +7,15 @@
 + Wireframe of application using Balsamiq.
 + Decoupled architecture consumes custom API.
 
+## Demo
+
 ![Taco](Taco-App-Screencast.gif)
+
+## Balsamiq wireframes
+
+![Wireframe1](wireframes/Landing-Wireframe.png)
+![Wireframe2](wireframes/Menu-Wireframe.png)
+
+## Contact
+#### Feel free to contact me at:
+###### aidanlegaspi1@gmail.com

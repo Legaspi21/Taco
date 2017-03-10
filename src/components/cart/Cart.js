@@ -31,12 +31,12 @@ class Cart extends Component {
     Actions.cart();
   }
 
-  onSendPress() {
-    console.log('SEND');
+  onMenuPress() {
+    Actions.home();
   }
 
-  onAccountPress() {
-    console.log('ACCOUNT');
+  onAmigosPress() {
+    Actions.amigos();
   }
 
   onCheckoutPress() {
@@ -151,11 +151,11 @@ class Cart extends Component {
               <Icon active name="cart" />
               <Text>Cart</Text>
             </Button>
-            <Button onPress={() => this.onSendPress()}>
+            <Button onPress={() => this.onMenuPress()}>
               <Icon name="restaurant" />
               <Text>Menu</Text>
             </Button>
-            <Button onPress={() => this.onAccountPress()}>
+            <Button onPress={() => this.onAmigosPress()}>
               <Icon name="people" />
               <Text>Amigos</Text>
             </Button>

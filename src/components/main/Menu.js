@@ -16,11 +16,11 @@ class Menu extends Component {
     Actions.cart();
   }
 
-  onSendPress() {
-    console.log('SEND');
+  onMenuPress() {
+    Actions.home();
   }
 
-  onAccountPress() {
+  onAmigosPress() {
     Actions.amigos();
   }
   render() {
@@ -36,11 +36,11 @@ class Menu extends Component {
               <Icon name="cart" />
               <Text>Cart</Text>
             </Button>
-            <Button active onPress={() => this.onSendPress()}>
+            <Button active onPress={() => this.onMenuPress()}>
               <Icon active name="restaurant" />
               <Text>Menu</Text>
             </Button>
-            <Button onPress={() => this.onAccountPress()}>
+            <Button onPress={() => this.onAmigosPress()}>
               <Icon name="people" />
               <Text>Amigos</Text>
             </Button>

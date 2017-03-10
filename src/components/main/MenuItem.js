@@ -20,8 +20,8 @@ class MenuItem extends Component {
 		LayoutAnimation.spring();
 	}
 
-	onQuantityTextChange({ quantity, title, price }) {
-		this.props.quantityChanged({ quantity, title, price });
+	onQuantityTextChange({ quantity, title, price, id }) {
+		this.props.quantityChanged({ quantity, title, price, id });
 	}
 
 	handleImageCartPress() {
@@ -38,7 +38,7 @@ class MenuItem extends Component {
 	}
 
 	renderQuantityField() {
-		const { title, price } = this.props;
+		const { title, price, id } = this.props;
 
 		if (this.state.cartClicked) {
 			return (
@@ -46,7 +46,7 @@ class MenuItem extends Component {
 					<Icon active name='cart' />
 					<Input 
 						placeholder='How many?' 
-						onChangeText={(quantity) => this.onQuantityTextChange({ quantity, title, price })} 
+						onChangeText={(quantity) => this.onQuantityTextChange({ quantity, title, price, id })} 
 					/>
 				</Item>
 			);

@@ -4,6 +4,7 @@ import { Scene, Router } from 'react-native-router-flux';
 import Registration from './components/landing/Registration';
 import Menu from './components/main/Menu';
 import Cart from './components/cart/Cart';
+import Amigos from './components/amigos/Amigos';
 
 const RouterComponent = () => {
 	const AppLogo = () => {
@@ -35,6 +36,11 @@ const RouterComponent = () => {
 				key="cart"
 				component={Cart}
 				title="Cart"
+				/>
+				<Scene 
+				key="amigos"
+				component={Amigos}
+				title="Amigos"
 				initial
 				/>
 			</Scene>

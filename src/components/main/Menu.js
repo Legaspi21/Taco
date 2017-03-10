@@ -21,7 +21,7 @@ class Menu extends Component {
   }
 
   onAccountPress() {
-    console.log('ACCOUNT');
+    Actions.amigos();
   }
   render() {
     return (

@@ -33,6 +33,7 @@ class MenuList extends Component {
 					description={taco.description} 
 					imageSource={taco.uri}
 					price={taco.price}
+					id={taco.id}
 					/>
 				)
 			);
@@ -72,8 +73,9 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = ({ cart }) => {
+	console.log('-------------------------');
 	console.log(cart);
-	console.log('cart');
+	console.log('cart --------------------');
 	const { quantity } = cart;
 
 	return { quantity };

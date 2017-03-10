@@ -1,12 +1,24 @@
 'use strict';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import { Container, Content, Footer, FooterTab, Button, Icon, Text, ListItem, Right, Left, Body, Separator } from 'native-base';
 import { Actions } from 'react-native-router-flux';
-import { View } from 'react-native';
+import { 
+  Container, 
+  Content, 
+  Footer, 
+  FooterTab, 
+  Button, 
+  Icon, 
+  Text, 
+  ListItem, 
+  Right, 
+  Left, 
+  Body, 
+  Separator 
+} from 'native-base';
 
 import {
-  StyleSheet,
+  View
 } from 'react-native';
 
 import CartItem from './CartItem';

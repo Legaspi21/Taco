@@ -26,7 +26,7 @@ const RouterComponent = () => {
 				hideNavBar
 				/>
 			</Scene>
-			<Scene key="main" initial>
+			<Scene key="main">
 				<Scene 
 				key="home"
 				component={Menu}
@@ -41,7 +41,6 @@ const RouterComponent = () => {
 				key="amigos"
 				component={Amigos}
 				title="Amigos"
-				initial
 				/>
 			</Scene>
 		</Router>

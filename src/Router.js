@@ -7,8 +7,7 @@ import Cart from './components/cart/Cart';
 import Amigos from './components/amigos/Amigos';
 
 const RouterComponent = () => {
-	const AppLogo = () => {
-  return (
+	const AppLogo = () => (
     <View style={{ alignItems: 'center', marginTop: 5, width: 1, height: 1 }}>
       <Image 
       source={require('./img/taco-logo.png')}
@@ -16,7 +15,7 @@ const RouterComponent = () => {
       />
     </View>
   );
-};
+  
 	return (
 		<Router sceneStyle={{ paddingTop: 65, flexGrow: 1 }} >
 			<Scene key="auth">
